@@ -68,7 +68,7 @@ class DataLoader:
 
     def query_popular_tickets(self):
         # Get the most popular ticket in the past month
-        sql_statement = "DESCRIBE TicketSales;"
+        sql_statement = "SELECT SUM(num_tickets) AS num_sales, event_name FROM TicketSales GROUP BY event_name ORDER BY num_sales DESC LIMIT 3;"
         cursor = self.connection.cursor()
         cursor.execute(sql_statement)
         records = cursor.fetchall()
@@ -85,4 +85,7 @@ if __name__ == "__main__":
     else:
         loader = DataLoader(u, p)
         loader.load_third_party(os.path.join(os.getcwd(), "third_party_sales_1.csv"))
-        print(loader.query_popular_tickets())
+        results = loader.query_popular_tickets()
+        print('Here are the top 3 events by ticket sales for the month:')
+        for i, v in results:
+            print('- {0} tickets sold for '.format(i), v)
