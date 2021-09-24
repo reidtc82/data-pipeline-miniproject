@@ -86,6 +86,6 @@ if __name__ == "__main__":
         loader = DataLoader(u, p)
         loader.load_third_party(os.path.join(os.getcwd(), "third_party_sales_1.csv"))
         results = loader.query_popular_tickets()
-        print('Here are the top 3 events by ticket sales for the month:')
+        print("Here are the top 3 events by ticket sales for the month:")
         for i, v in results:
-            print('- {0} tickets sold for '.format(i), v)
+            print("- {0} tickets sold for ".format(i), v)
