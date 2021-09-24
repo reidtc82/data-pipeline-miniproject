@@ -6,7 +6,7 @@ import os
 
 class DataLoader:
     db_name = "TicketSystem"
-    table_name = "TicketSales"
+    table_name = "sales"
 
     def __init__(self, user, pw) -> None:
         self.user = user
@@ -68,7 +68,11 @@ class DataLoader:
 
     def query_popular_tickets(self):
         # Get the most popular ticket in the past month
-        sql_statement = "SELECT SUM(num_tickets) AS num_sales, event_name FROM TicketSales GROUP BY event_name ORDER BY num_sales DESC LIMIT 3;"
+        sql_statement = (
+            "SELECT SUM(num_tickets) AS num_sales, event_name FROM "
+            + self.table_name
+            + " GROUP BY event_name ORDER BY num_sales DESC LIMIT 3;"
+        )
         cursor = self.connection.cursor()
         cursor.execute(sql_statement)
         records = cursor.fetchall()

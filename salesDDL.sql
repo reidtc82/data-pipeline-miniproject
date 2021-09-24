@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS TicketSystem;
 CREATE DATABASE IF NOT EXISTS TicketSystem;
 USE TicketSystem;
-CREATE TABLE IF NOT EXISTS TicketSales (
+CREATE TABLE IF NOT EXISTS sales (
     ticket_id INT NOT NULL,
     trans_date DATE NOT NULL,
     event_id INT NOT NULL,
